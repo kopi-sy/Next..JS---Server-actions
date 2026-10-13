@@ -125,3 +125,17 @@ export async function deleteUserAction(currentUserID, pathToRevalidate) {
     };
   }
 }
+
+export async function fetchListOfProducts() {
+  try {
+    const res = await fetch("https://dummyjson.com/products?limit=12", {
+      cache: "no-store",
+    });
+    const data = await res.json();
+    return data?.products || [];
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
+
